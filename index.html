@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Personal Home Page and Portfolio of Ujjawal, an Arch Linux enthusiast and Java Developer." />
+    <meta name="author" content="Ujjawal" />
+    <title>Ujjawal - Personal Home Page</title>
+    <style>
+        body {
+            font-family:
+                -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
+            background-color: #f7f9fa;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin: 20px 0 10px;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #e0e6ed;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .section-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            margin-bottom: 30px;
+        }
+
+        .terminal-quote {
+            background: #eef2f5;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+            color: #444;
+            white-space: pre-wrap;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ebf5ff;
+            color: #0077cc;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 0 2px;
+        }
+
+        .project-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .project-card {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-desc {
+            color: #666;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <img src="https://via.placeholder.com/150" alt="Ujjawal's Black and White Profile Picture"
+                class="profile-pic" />
+            <h1>Hi, I'm Ujjawal</h1>
+            <p>Benevolent creator of this personal home page.</p>
+        </header>
+
+        <!-- About Me Section -->
+        <section class="section-content">
+            <h2>About Me</h2>
+            <div class="terminal-quote">
+                > Arch Linux power user. I use Hyprland, btw. > Anything I code may be
+                used against you. You are hereby warned. > Trigger Warning: JVM
+                Internals ahead. Fly, you fools!
+            </div>
+
+            <p>
+                Born in 2004, armed with a BCA, and currently on a gap year to execute
+                a singular mission: becoming the world's greatest Java developer. My
+                daily workflow lives in the terminal. I spend my days deep inside an
+                Arch Linux environment, utilizing core tools like
+                <span class="badge">zellij</span>, <span class="badge">zoxide</span>,
+                and <span class="badge">eza</span>.
+            </p>
+
+            <p>
+                I learn from First Principles, breaking down backend architecture,
+                Spring Boot, and the Linux Kernel to understand the 'Why' behind
+                systems at scale. When I'm not writing custom database engines, you
+                can find me grinding <span class="badge">LeetCode</span>, tweaking my
+                Waybar scripts, or watching Demon Slayer (Zenitsu is the GOAT).
+            </p>
+
+            <p>
+                <strong>TLDR;</strong> Interested in Core Java, Spring Boot, Arch
+                Linux, system architecture, competitive programming, and terminal
+                mastery. <code>System.exit(0);</code>
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section-content">
+            <h2>Projects & Experiments</h2>
+            <ul class="project-list">
+                <li class="project-card">
+                    <div class="project-title"><span class="badge">FileQL</span></div>
+                    <p class="project-desc">
+                        A custom file-based database engine built purely in Java,
+                        featuring custom schema models and query parsing.
+                    </p>
+                </li>
+                <li class="project-card">
+                    <div class="project-title">
+                        <span class="badge">FileAccess (Project Z)</span>
+                    </div>
+                    <p class="project-desc">
+                        A terminal-based CLI built in Java replicating core Linux commands
+                        like ls, cp, and rm.
+                    </p>
+                </li>
+                <li class="project-card">
+                    <div class="project-title">
+                        <span class="badge">LeetCode Grind</span>
+                    </div>
+                    <p class="project-desc">
+                        Active competitive programming repository. Profile:
+                        ujjawalMvishwakarma.
+                    </p>
+                </li>
+                <li class="project-card">
+                    <div class="project-title">
+                        <span class="badge">GitHub Notes</span>
+                    </div>
+                    <p class="project-desc">
+                        Deep-dive repository for First Principles mastery of Core Java
+                        concepts.
+                    </p>
+                </li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>
