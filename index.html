@@ -8,211 +8,393 @@
         content="Personal Home Page and Portfolio of Ujjawal, an Arch Linux enthusiast and Java Developer." />
     <meta name="author" content="Ujjawal" />
     <title>Ujjawal - Personal Home Page</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
-        body {
-            font-family:
-                -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                "Helvetica Neue", Arial, sans-serif;
-            background-color: #f7f9fa;
-            color: #333;
-            line-height: 1.6;
+        :root {
+            --bg-color: #0d1117;
+            --bg-gradient: radial-gradient(circle at top right, #1f2937, #0d1117 40%);
+            --text-color: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.4);
+            --card-bg: rgba(22, 27, 34, 0.8);
+            --card-border: #30363d;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: var(--bg-gradient);
+            color: var(--text-color);
+            line-height: 1.7;
             display: flex;
             justify-content: center;
+            min-height: 100vh;
+            padding: 60px 20px;
+            overflow-x: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1100px;
             width: 100%;
-            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
-        .header {
+        @media (max-width: 850px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Profile Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 60px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 40px 30px;
+            border-radius: 20px;
             text-align: center;
-            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: slideInLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            backdrop-filter: blur(10px);
         }
 
         .profile-pic {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 4px solid var(--card-border);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            margin-bottom: 25px;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease;
         }
 
-        h1 {
-            color: #2c3e50;
-            margin: 20px 0 10px;
+        .profile-pic:hover {
+            transform: scale(1.08) rotate(2deg);
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
         }
 
-        h2 {
-            color: #34495e;
-            border-bottom: 2px solid #e0e6ed;
-            padding-bottom: 10px;
-            margin-top: 40px;
-            margin-bottom: 20px;
+        .sidebar h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
         }
 
-        p {
-            margin-bottom: 15px;
-            color: #555;
+        .sidebar p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            animation: slideInRight 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
 
         .section-content {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            margin-bottom: 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-content:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 4px;
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-color);
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
         }
 
         .terminal-quote {
-            background: #eef2f5;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid #3498db;
-            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-            color: #444;
+            background: #090c10;
+            border: 1px solid var(--card-border);
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #7ee787;
             white-space: pre-wrap;
-            margin: 20px 0;
+            margin: 0 0 25px 0;
             font-size: 0.9em;
+            line-height: 1.8;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .terminal-quote::before {
+            content: 'user@archlinux:~/home $ cat thoughts.txt';
+            display: block;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-size: 0.9em;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 12px;
         }
 
         .badge {
-            display: inline-block;
-            background: #ebf5ff;
-            color: #0077cc;
-            padding: 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.85em;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin: 0 2px;
+            margin: 0 4px;
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .badge:hover {
+            background: var(--accent);
+            color: #090c10;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
         .project-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .project-card {
-            background: #fff;
-            border: 1px solid #eaeaea;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s;
+            background: #090c10;
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-6px);
+            border-color: #4b535d;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+            background: #0d1117;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(100%);
         }
 
         .project-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .project-title .badge {
+            font-size: 1rem;
+            margin: 0;
+            padding: 6px 14px;
+            background: transparent;
+            border-color: var(--accent);
+        }
+
+        .project-card:hover .project-title .badge {
+            background: var(--accent);
+            color: #000;
         }
 
         .project-desc {
-            color: #666;
-            margin: 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            color: #f0883e;
+            border: 1px solid rgba(240, 136, 62, 0.2);
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <!-- Header Section -->
-        <header class="header">
-            <img src="profile.png" alt="Ujjawal's Black and White Profile Picture"
-                class="profile-pic" />
-            <h1>Hi, I'm Ujjawal</h1>
-            <p>Benevolent creator of this personal home page.</p>
-        </header>
+        <!-- Sidebar Section -->
+        <aside class="sidebar">
+            <img src="profile.png" alt="Ujjawal Vishwakarma Profile Picture" class="profile-pic" />
+            <h1>Ujjawal Vishwakarma</h1>
+            <p>Java Backend Developer | Arch Linux Systems Specialist</p>
+        </aside>
 
-        <!-- About Me Section -->
-        <section class="section-content">
-            <h2>About Me</h2>
-            <div class="terminal-quote">
-                > Arch Linux power user. I use Hyprland, btw. > Anything I code may be
-                used against you. You are hereby warned. > Trigger Warning: JVM
-                Internals ahead. Fly, you fools!
-            </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- About Me Section -->
+            <section class="section-content">
+                <h2>About Me</h2>
+                <div class="terminal-quote">
+                    > Goal: Engineering high-scale backend systems from First Principles.
+                    > Schedule: 3:00 AM Deep-Work Protocol.
+                    > Trigger Warning: JVM Internals ahead. Fly, you fools!
+                </div>
 
-            <p>
-                Born in 2004, armed with a BCA, and currently on a gap year to execute
-                a singular mission: becoming the world's greatest Java developer. My
-                daily workflow lives in the terminal. I spend my days deep inside an
-                Arch Linux environment, utilizing core tools like
-                <span class="badge">zellij</span>, <span class="badge">zoxide</span>,
-                and <span class="badge">eza</span>.
-            </p>
+                <p>
+                    I am a BCA Graduate (Class of 2025) currently on a dedicated gap year
+                    (2025-2026) with a singular focus: mastering 19 core backend concepts and
+                    JVM internals. Operating on a rigorous 3:00 AM schedule, I am determined
+                    to dominate <span class="badge">Spring Boot</span> and <span class="badge">System Design</span>.
+                </p>
 
-            <p>
-                I learn from First Principles, breaking down backend architecture,
-                Spring Boot, and the Linux Kernel to understand the 'Why' behind
-                systems at scale. When I'm not writing custom database engines, you
-                can find me grinding <span class="badge">LeetCode</span>, tweaking my
-                Waybar scripts, or watching Demon Slayer (Zenitsu is the GOAT).
-            </p>
+                <p>
+                    My professional philosophy revolves around <strong>First Principles Thinking</strong>.
+                    Instead of just building basic CRUD apps, I focus on the internal architecture.
+                    Whether it's breaking down backend architecture, writing custom database
+                    engines, or solving complex DSA problems, my goal is to understand how things work under the hood.
+                </p>
 
-            <p>
-                <strong>TLDR;</strong> Interested in Core Java, Spring Boot, Arch
-                Linux, system architecture, competitive programming, and terminal
-                mastery. <code>System.exit(0);</code>
-            </p>
-        </section>
+                <p>
+                    <strong>Technical Arsenal:</strong> Java (Core & Advanced), SQL, Spring Boot,
+                    Hibernate. My primary environment is <span class="badge">Arch Linux (Power User)</span>
+                    managed via Hyprland and Waybar.
+                </p>
+            </section>
 
-        <!-- Projects Section -->
-        <section class="section-content">
-            <h2>Projects & Experiments</h2>
-            <ul class="project-list">
-                <li class="project-card">
-                    <div class="project-title"><span class="badge">FileQL</span></div>
-                    <p class="project-desc">
-                        A custom file-based database engine built purely in Java,
-                        featuring custom schema models and query parsing.
-                    </p>
-                </li>
-                <li class="project-card">
-                    <div class="project-title">
-                        <span class="badge">FileAccess (Project Z)</span>
+            <!-- Projects Section -->
+            <section class="section-content">
+                <h2>Featured Works</h2>
+                <div class="project-list">
+                    <div class="project-card">
+                        <div class="project-title"><span class="badge">FileQL</span></div>
+                        <p class="project-desc">
+                            A custom, file-based database engine built from scratch in Java.
+                            Demonstrates deep knowledge of file I/O, schema modeling, and query parsing.
+                        </p>
                     </div>
-                    <p class="project-desc">
-                        A terminal-based CLI built in Java replicating core Linux commands
-                        like ls, cp, and rm.
-                    </p>
-                </li>
-                <li class="project-card">
-                    <div class="project-title">
-                        <span class="badge">LeetCode Grind</span>
+                    <div class="project-card">
+                        <div class="project-title">
+                            <span class="badge">Project Z (FileAccess)</span>
+                        </div>
+                        <p class="project-desc">
+                            A terminal-based CLI built in Java that replicates core Linux utilities (ls, cp, rm).
+                            Highlights the ability to bridge Java with OS-level operations.
+                        </p>
                     </div>
-                    <p class="project-desc">
-                        Active competitive programming repository. Profile:
-                        ujjawalMvishwakarma.
-                    </p>
-                </li>
-                <li class="project-card">
-                    <div class="project-title">
-                        <span class="badge">GitHub Notes</span>
+                    <div class="project-card">
+                        <div class="project-title">
+                            <a href="https://github.com/ujjawalTHEBATMAN" target="_blank"
+                                style="text-decoration: none;"><span class="badge"
+                                    style="cursor: pointer;">GitHub</span></a>
+                        </div>
+                        <p class="project-desc">
+                            <strong>ujjawalTHEBATMAN</strong>: Showcases my repository for Core Java and FileQL.
+                        </p>
                     </div>
-                    <p class="project-desc">
-                        Deep-dive repository for First Principles mastery of Core Java
-                        concepts.
-                    </p>
-                </li>
-            </ul>
-        </section>
+                    <div class="project-card">
+                        <div class="project-title">
+                            <span class="badge">LeetCode</span>
+                        </div>
+                        <p class="project-desc">
+                            <strong>ujjawalMvishwakarma</strong>: Evidence of consistent problem-solving,
+                            algorithmic thinking, and extensive DSA mastery.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 </body>
 
